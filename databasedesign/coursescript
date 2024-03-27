@@ -1,0 +1,26 @@
+CREATE DATABASE testbase2;
+USE testbase2;
+CREATE TABLE `mirjavkharbek`(
+	`number` INT PRIMARY KEY,
+	`hobby` VARCHAR(100),
+	`smth` VARCHAR(100),
+	`time_spent` INT
+);
+
+INSERT INTO mirjavkharbek (`number`, hobby, smth, time_spent)
+VALUES ('1', 'SW', 'another', '100');
+
+INSERT INTO mirjavkharbek(`index`, time_spent) VALUES('3', '103');
+INSERT INTO mirjavkharbek(`index`, time_spent) VALUES('4', '104');
+INSERT INTO mirjavkharbek(`index`, time_spent) VALUES('5', '105');
+INSERT INTO mirjavkharbek(`index`, time_spent) VALUES('6', '106');
+INSERT INTO mirjavkharbek(`index`, time_spent) VALUES('7', '107');
+INSERT INTO mirjavkharbek(`index`, time_spent) VALUES('8', '108');
+INSERT INTO mirjavkharbek(`index`, time_spent) VALUES('9', '109');
+INSERT INTO mirjavkharbek(`index`, time_spent) VALUES('10', '110');
+
+ALTER TABLE tablename MODIFY columnname INTEGER;
+
+USE testbase3;
+SELECT * FROM student_info where birth_country='uzbekistan' or birth_country='russia';
+
