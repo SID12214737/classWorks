@@ -1,0 +1,69 @@
+create database week4;
+
+use week4;
+
+create table classes(
+id int(2) primary key,
+course_id int(1), 
+student_id int(6)
+);
+
+create table courses(
+id int(1) primary key,
+`name` VARCHAR(15), 
+prof_id int(1),
+section int(1)
+);
+
+create table professors(
+id int(1) primary key,
+`name` VARCHAR(15)
+
+);
+
+create table students(
+id int(1) primary key,
+`name` VARCHAR(15),
+contact int(6)
+);
+
+SELECT DISTINCT `name` FROM courses;
+
+SELECT courses.`name`, professors.`name`
+from courses
+JOIN professors ON courses.prof_id = professors.id;
+
+SELECT professors.`name`, students.`name`, courses.`name`
+FROM classes
+JOIN courses ON classes.course_id = courses.id
+JOIN professors ON courses.prof_id = professors.id
+JOIN students ON classes.student_id = students.id;
+
+SELECT courses.`name`, COUNT( classes.student_id) AS num_students
+FROM courses
+JOIN classes ON courses.id = classes.course_id
+GROUP BY courses.`name`;
+
+SELECT courses.`name`, COUNT(classes.student_id) AS num_students
+FROM courses
+JOIN classes ON courses.id = classes.course_id
+GROUP BY courses.id;
+
+SELECT professors.`name`, COUNT(DISTINCT classes.student_id) AS num_students
+FROM professors
+JOIN courses ON professors.id = courses.prof_id
+JOIN classes ON courses.id = classes.course_id
+GROUP BY professors.id, professors.`name`;
+
+SELECT courses.`name`, students.`name`
+FROM courses
+JOIN classes ON courses.id = classes.course_id
+JOIN students ON classes.student_id = students.id
+ORDER BY courses.`name`, students.`name`;
+
+SELECT students.`name`, courses.`name`
+FROM students
+JOIN classes ON students.id = classes.student_id
+JOIN courses ON classes.course_id = courses.id
+WHERE students.`name` LIKE 'A%'
+ORDER BY students.`name`, courses.`name`;
